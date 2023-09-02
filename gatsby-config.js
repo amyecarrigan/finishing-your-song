@@ -23,20 +23,6 @@ module.exports = {
   plugins: [
     `gatsby-plugin-image`,
     {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/content/blog`,
-        name: `blog`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
-    },
-    {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
@@ -121,5 +107,12 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
+    {
+      resolve: `gatsby-source-ghost`,
+      options: {
+        apiUrl: `http://localhost:2368`,
+        contentApiKey: `64f2861e8248b56b76b136d5:788372152b954b9fa75296910703fb6371a32f8a410bbfc8d09943177ed33553`,
+      }
+    }
   ],
 }

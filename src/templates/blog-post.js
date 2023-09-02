@@ -6,7 +6,7 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 
 const BlogPostTemplate = ({
-  data: { previous, next, site, markdownRemark: post },
+  data: { previous, next, site, ghostPost: post },
   location,
 }) => {
   const siteTitle = site.siteMetadata?.title || `Title`
@@ -19,8 +19,8 @@ const BlogPostTemplate = ({
         itemType="http://schema.org/Article"
       >
         <header>
-          <h1 itemProp="headline">{post.frontmatter.title}</h1>
-          <p>{post.frontmatter.date}</p>
+          <h1 itemProp="headline">{post.title}</h1>
+          <p>{post.published_at_pretty}</p>
         </header>
         <section
           dangerouslySetInnerHTML={{ __html: post.html }}
@@ -64,8 +64,8 @@ const BlogPostTemplate = ({
 export const Head = ({ data: { markdownRemark: post } }) => {
   return (
     <Seo
-      title={post.frontmatter.title}
-      description={post.frontmatter.description || post.excerpt}
+      title={post.title}
+      description={post.excerpt}
     />
   )
 }
@@ -73,41 +73,19 @@ export const Head = ({ data: { markdownRemark: post } }) => {
 export default BlogPostTemplate
 
 export const pageQuery = graphql`
-  query BlogPostBySlug(
-    $id: String!
-    $previousPostId: String
-    $nextPostId: String
-  ) {
+  query($slug: String!) {
     site {
       siteMetadata {
         title
       }
     }
-    markdownRemark(id: { eq: $id }) {
+    ghostPost(slug: { eq: $slug }) {
       id
-      excerpt(pruneLength: 160)
+      title
+      slug
+      excerpt
+      published_at_pretty: published_at(formatString: "MMMM DD, YYYY")
       html
-      frontmatter {
-        title
-        date(formatString: "MMMM DD, YYYY")
-        description
-      }
-    }
-    previous: markdownRemark(id: { eq: $previousPostId }) {
-      fields {
-        slug
-      }
-      frontmatter {
-        title
-      }
-    }
-    next: markdownRemark(id: { eq: $nextPostId }) {
-      fields {
-        slug
-      }
-      frontmatter {
-        title
-      }
     }
   }
 `
