@@ -111,8 +111,14 @@ module.exports = {
       resolve: `gatsby-source-ghost`,
       options: {
         apiUrl: `http://localhost:2368`,
-        contentApiKey: `64f2861e8248b56b76b136d5:788372152b954b9fa75296910703fb6371a32f8a410bbfc8d09943177ed33553`,
+        contentApiKey: `content-api-key`,
       }
-    }
+    },
+    {
+      resolve: `gatsby-plugin-s3`,
+      options: {
+        bucketName: "your-bucket-name",
+      },
+    },
   ],
 }
