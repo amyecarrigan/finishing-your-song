@@ -99,3 +99,5 @@ The fastest way to combine your favorite tools and APIs to build the fastest sit
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 See [Environment Variables](https://www.gatsbyjs.com/docs/how-to/local-development/environment-variables/) for how to set up environment variable files for Gatsby.
+
+Run `npm run build && npm run deploy` to do a build and have it immediately deployed to S3.
