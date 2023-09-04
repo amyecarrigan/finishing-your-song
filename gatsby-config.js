@@ -3,6 +3,9 @@
  *
  * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/
  */
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 
 /**
  * @type {import('gatsby').GatsbyConfig}
@@ -110,14 +113,14 @@ module.exports = {
     {
       resolve: `gatsby-source-ghost`,
       options: {
-        apiUrl: `http://localhost:2368`,
-        contentApiKey: `content-api-key`,
+        apiUrl: process.env.GHOST_API_URL,
+        contentApiKey: process.env.GHOST_CONTENT_API_KEY,
       }
     },
     {
       resolve: `gatsby-plugin-s3`,
       options: {
-        bucketName: "your-bucket-name",
+        bucketName: process.env.S3_BUCKET_NAME,
       },
     },
   ],
