@@ -44,14 +44,14 @@ const BlogPostTemplate = ({
           <li>
             {previous && (
               <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
+                ← {previous.title}
               </Link>
             )}
           </li>
           <li>
             {next && (
               <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
+                {next.title} →
               </Link>
             )}
           </li>
@@ -61,7 +61,7 @@ const BlogPostTemplate = ({
   )
 }
 
-export const Head = ({ data: { markdownRemark: post } }) => {
+export const Head = ({ data: { ghostPost: post } }) => {
   return (
     <Seo
       title={post.title}
