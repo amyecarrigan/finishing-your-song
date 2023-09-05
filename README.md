@@ -97,3 +97,7 @@ Looking for more guidance? Full documentation for Gatsby lives [on the website](
 The fastest way to combine your favorite tools and APIs to build the fastest sites, stores, and apps for the web. And also the best place to build, deploy, and host your Gatsby sites.
 
 <!-- AUTO-GENERATED-CONTENT:END -->
+
+See [Environment Variables](https://www.gatsbyjs.com/docs/how-to/local-development/environment-variables/) for how to set up environment variable files for Gatsby.
+
+Run `npm run build && npm run deploy` to do a build and have it immediately deployed to S3.
